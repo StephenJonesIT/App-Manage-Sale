@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:title="Tổng quan"
+        android:title="@string/tong_quan"
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/nav_order"
-        android:title="Đơn hàng"
+        android:title="@string/don_hang"
         android:icon="@drawable/ic_order_approve"/>
     <item
         android:id="@+id/nav_package"
-        android:title="Sản phẩm"
+        android:title="@string/san_pham"
         android:icon="@drawable/ic_package"/>
     <item
         android:id="@+id/nav_receive"
-        android:title="Phiếu nhập"
+        android:title="@string/phieu_nhap"
         android:icon="@drawable/ic_receipt_long"/>
     <item
         android:id="@+id/nav_add"
-        android:title="Thêm"
+        android:title="@string/them"
         android:icon="@drawable/ic_apps"/>
 </menu>

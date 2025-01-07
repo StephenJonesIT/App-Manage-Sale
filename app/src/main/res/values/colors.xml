@@ -8,4 +8,7 @@
     <color name="bottom_nav_text_color">#797979</color>
     <color name="bottom_nav_background_color">#F2F2F2</color>
     <color name="blue">#1874CD</color>
+    <color name="green_dashboard">#57E276</color>
+    <color name="blue_dashboard">#329BEF</color>
+    <color name="yellow_dashboard">#E0BD52</color>
 </resources>

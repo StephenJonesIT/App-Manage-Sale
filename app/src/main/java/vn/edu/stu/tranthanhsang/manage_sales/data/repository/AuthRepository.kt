@@ -4,14 +4,14 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.auth.ErrorResponse
+import vn.edu.stu.tranthanhsang.manage_sales.data.model.common.ErrorResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.auth.LoginRequest
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.auth.LoginResponse
-import vn.edu.stu.tranthanhsang.manage_sales.data.remote.retrofit.RetrofitClient
+import vn.edu.stu.tranthanhsang.manage_sales.data.remote.retrofit.AuthServiceClient
 import java.io.IOException
 
 class AuthRepository {
-    private val apiService = RetrofitClient.apiService
+    private val apiService = AuthServiceClient.apiService
 
     suspend fun login(loginRequest: LoginRequest): Result<LoginResponse> =
         withContext(Dispatchers.IO) {

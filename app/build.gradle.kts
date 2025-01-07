@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         dataBinding = true
+
     }
 }
 
@@ -50,6 +52,9 @@ dependencies {
     implementation(libs.androidx.databinding.runtime)
     implementation(libs.androidx.lifecycle.extensions)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.sdp.android)
+    implementation(libs.circleimageview)
+    implementation(libs.logging.interceptor)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

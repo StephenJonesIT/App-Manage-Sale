@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_trang_thai"
+            app:layout_constraintTop_toBottomOf="@id/tv_trang_thai"
+            app:layout_constraintBottom_toBottomOf="@id/tv_don_gia"
+            app:layout_constraintEnd_toEndOf="@id/tv_trang_thai"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:text="Số lượng: "
+            android:gravity="end"
+            android:id="@+id/tv_so_luong"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_trang_thai"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Tên Sản Phẩm: "
+            android:textSize="18sp"
+            android:id="@+id/tv_tensp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tensp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@id/tv_so_luong"
+            android:text="Đơn Giá: "
+            android:textColor="@color/red"
+            android:textStyle="italic|bold"
+            android:id="@+id/tv_don_gia"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Trạng thái"
+            android:id="@+id/tv_trang_thai"
+            android:gravity="end"
+            app:layout_constraintStart_toEndOf="@id/tv_tensp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tensp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_tensp"
+            android:textStyle="bold"
+            android:textColor="@color/green"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

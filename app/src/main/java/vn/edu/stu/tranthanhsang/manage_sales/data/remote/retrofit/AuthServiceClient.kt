@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.edu.stu.tranthanhsang.manage_sales.data.remote.api.AuthService
 
-object RetrofitClient{
+object AuthServiceClient{
     private const val BASE_URL = "http://10.0.2.2:1000/shop/account/"
     private val retrofit by lazy {
         Retrofit.Builder()
