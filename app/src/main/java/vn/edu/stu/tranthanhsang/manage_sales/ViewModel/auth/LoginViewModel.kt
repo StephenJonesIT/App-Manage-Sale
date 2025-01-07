@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import vn.edu.stu.tranthanhsang.manage_sales.data.repository.AuthRepository
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.auth.LoginRequest
+import vn.edu.stu.tranthanhsang.manage_sales.utils.TokenManage
 
 class LoginViewModel(application: Application, private val authRepository: AuthRepository) : AndroidViewModel(application) {
     val phoneNumber = MutableLiveData<String>()
@@ -16,6 +17,8 @@ class LoginViewModel(application: Application, private val authRepository: AuthR
     val phoneError = MutableLiveData<String>()
     val passwordError = MutableLiveData<String>()
     val loginResult = MutableLiveData<LoginResult>()
+
+    private lateinit var tokenManager: TokenManage
 
     sealed class LoginResult {
         object Success : LoginResult()
@@ -76,7 +79,8 @@ class LoginViewModel(application: Application, private val authRepository: AuthR
                 if (response.isSuccess) {
                     val token = response.getOrNull()?.token
                     if (token != null) {
-                        saveToken(token)
+                        tokenManager = TokenManage(getApplication())
+                        tokenManager.saveToken(token)
                         loginResult.value = LoginResult.Success
                     } else {
                         loginResult.value = LoginResult.Error("Token not found")
@@ -88,12 +92,5 @@ class LoginViewModel(application: Application, private val authRepository: AuthR
                 loginResult.value = LoginResult.Error(e.message ?: "Login failed")
             }
         }
-    }
-
-    private fun saveToken(token: String) {
-        val sharedPreferences = getApplication<Application>().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("auth_token", token)
-        editor.apply()
     }
 }

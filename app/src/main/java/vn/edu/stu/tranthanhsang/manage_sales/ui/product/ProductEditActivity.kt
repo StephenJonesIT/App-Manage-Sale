@@ -22,17 +22,21 @@ import vn.edu.stu.tranthanhsang.manage_sales.data.repository.ProductRepository
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.ActivityProductEditBinding
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.CustomDialogBinding
 import vn.edu.stu.tranthanhsang.manage_sales.utils.PriceUtils
+import vn.edu.stu.tranthanhsang.manage_sales.utils.ToastUtils
+import vn.edu.stu.tranthanhsang.manage_sales.utils.TokenManage
 import vn.edu.stu.tranthanhsang.manage_sales.viewModel.products.EditProductViewModelFactory
 import vn.edu.stu.tranthanhsang.manage_sales.viewModel.products.EditViewModel
 
 class ProductEditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductEditBinding
     private lateinit var editViewModel: EditViewModel
+    private lateinit var tokenManager: TokenManage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val productRepository = ProductRepository()
-        val token = getToken()
+        tokenManager = TokenManage(this)
+        val token = tokenManager.getToken()
         Log.v("TOKEN_SET",token.toString())
 
         editViewModel = ViewModelProvider(
@@ -85,50 +89,17 @@ class ProductEditActivity : AppCompatActivity() {
     private fun observerEvents() {
         editViewModel.isStatusEdit.observe(this){
             if (it){
-                binding.imgCancel.visibility = View.VISIBLE
-                binding.imgOk.visibility = View.VISIBLE
-                binding.imgEdit.visibility = View.INVISIBLE
-                binding.imgBack.visibility = View.INVISIBLE
-                binding.btnLuu.visibility = View.VISIBLE
-                binding.btnDelete.visibility = View.INVISIBLE
-                binding.tvTitle.text = "Sửa sản phẩm"
-
-                binding.edtNameProduct.isEnabled = true
-                binding.edtPriceProduct.isEnabled = true
-                binding.edtSlProduct.isEnabled = true
-                binding.edtLoaiProduct.isEnabled = true
-                binding.edtDvtProduct.isEnabled = true
-
-                binding.edtNameProduct.setTextColor(Color.parseColor("#FF000000"))
-                binding.edtPriceProduct.setTextColor(Color.parseColor("#FF000000"))
-                binding.edtSlProduct.setTextColor(Color.parseColor("#FF000000"))
-                binding.edtLoaiProduct.setTextColor(Color.parseColor("#FF000000"))
-                binding.edtDvtProduct.setTextColor(Color.parseColor("#FF000000"))
-
+                setMessageTitle("Sửa sản phẩm")
+                setStatusEvents(View.INVISIBLE,View.VISIBLE)
+                setEnabledEditText(true)
+                setColorEditText("#FF000000")
                 editViewModel.priceProduct.value = PriceUtils.removeCommas(binding.edtPriceProduct.text.toString())
             }else {
-                binding.imgEdit.visibility = View.VISIBLE
-                binding.imgBack.visibility = View.VISIBLE
-                binding.imgCancel.visibility = View.INVISIBLE
-                binding.imgOk.visibility = View.INVISIBLE
-                binding.tvTitle.text = "Chi tiết sản phẩm"
-                binding.btnLuu.visibility = View.INVISIBLE
-                binding.btnDelete.visibility = View.VISIBLE
 
-                binding.edtIdProduct.isEnabled = false
-                binding.edtNameProduct.isEnabled = false
-                binding.edtPriceProduct.isEnabled = false
-                binding.edtSlProduct.isEnabled = false
-                binding.edtLoaiProduct.isEnabled = false
-                binding.edtDvtProduct.isEnabled = false
-
-                binding.edtIdProduct.setTextColor(Color.parseColor("#797979"))
-                binding.edtNameProduct.setTextColor(Color.parseColor("#797979"))
-                binding.edtPriceProduct.setTextColor(Color.parseColor("#797979"))
-                binding.edtSlProduct.setTextColor(Color.parseColor("#797979"))
-                binding.edtLoaiProduct.setTextColor(Color.parseColor("#797979"))
-                binding.edtDvtProduct.setTextColor(Color.parseColor("#797979"))
-
+                setMessageTitle("Chi tiết sản phẩm")
+                setStatusEvents(View.VISIBLE,View.INVISIBLE)
+                setEnabledEditText(false)
+                setColorEditText("#797979")
             }
         }
         editViewModel.isDelete.observe(this){
@@ -157,24 +128,56 @@ class ProductEditActivity : AppCompatActivity() {
         }
         editViewModel.isConfirm.observe(this){
             if (it){
-                editViewModel.idProduct.value = binding.edtIdProduct.text.toString()
-                editViewModel.nameProduct.value = binding.edtNameProduct.text.toString()
-                editViewModel.priceProduct.value = binding.edtPriceProduct.text.toString()
-                editViewModel.slProduct.value = binding.edtSlProduct.text.toString()
-                editViewModel.typeProduct.value = binding.edtLoaiProduct.text.toString()
-                editViewModel.dvtProduct.value = binding.edtDvtProduct.text.toString()
-
+                setValueViewModel()
                 editViewModel.updateProduct()
             }
         }
         editViewModel.isStatusUpdate.observe(this){
-            if (it.isSuccess){
-                Toast.makeText(this,"Sửa sản phẩm thành công",Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this,ProductListActivity::class.java))
-            }else{
-                Toast.makeText(this,"Xử lý thất bại",Toast.LENGTH_SHORT).show()
-            }
+            if (it.isSuccess) {
+                ToastUtils.showToast(this, "Sửa sản phẩm thành công")
+                startActivity(Intent(this, ProductListActivity::class.java))
+            } else ToastUtils.showToast(this, "Sửa sản phẩm thất bại")
         }
+    }
+
+    private fun setMessageTitle(message: String) {
+        binding.tvTitle.text = message
+    }
+
+    private fun setStatusEvents(visible: Int, invisible: Int) {
+        binding.imgEdit.visibility = visible
+        binding.imgBack.visibility = visible
+        binding.btnDelete.visibility = visible
+        binding.imgCancel.visibility = invisible
+        binding.imgOk.visibility = invisible
+        binding.btnLuu.visibility = invisible
+    }
+
+    private fun setEnabledEditText(status: Boolean) {
+        binding.edtIdProduct.isEnabled = false
+        binding.edtNameProduct.isEnabled = status
+        binding.edtPriceProduct.isEnabled = status
+        binding.edtSlProduct.isEnabled = status
+        binding.edtLoaiProduct.isEnabled = status
+        binding.edtDvtProduct.isEnabled = status
+    }
+
+    private fun setColorEditText(color: String) {
+        binding.edtIdProduct.setTextColor(Color.parseColor("#797979"))
+        binding.edtNameProduct.setTextColor(Color.parseColor(color))
+        binding.edtPriceProduct.setTextColor(Color.parseColor(color))
+        binding.edtSlProduct.setTextColor(Color.parseColor(color))
+        binding.edtLoaiProduct.setTextColor(Color.parseColor(color))
+        binding.edtDvtProduct.setTextColor(Color.parseColor(color))
+    }
+
+    private fun setValueViewModel() {
+        editViewModel.idProduct.value = binding.edtIdProduct.text.toString()
+        editViewModel.nameProduct.value = binding.edtNameProduct.text.toString()
+        editViewModel.priceProduct.value = binding.edtPriceProduct.text.toString()
+        editViewModel.slProduct.value = binding.edtSlProduct.text.toString()
+        editViewModel.typeProduct.value = binding.edtLoaiProduct.text.toString()
+        editViewModel.dvtProduct.value = binding.edtDvtProduct.text.toString()
     }
 
     private fun showDialogOption(title: String,message: String) {
@@ -209,10 +212,5 @@ class ProductEditActivity : AppCompatActivity() {
         dialog.show()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
-    private fun getToken(): String? {
-        val sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
-        val token = sharedPreferences.getString("auth_token",null)
-        Log.d("TOKEN",token.toString())
-        return token
-    }
+
 }

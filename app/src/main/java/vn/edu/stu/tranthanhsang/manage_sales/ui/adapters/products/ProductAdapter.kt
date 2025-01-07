@@ -26,6 +26,20 @@ class ProductAdapter(
             }
         }
     }
+    private val filteredItems = products.toMutableList()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun filterList(query: String?) {
+        filteredItems.clear()
+        if (query.isNullOrBlank()) {
+            filteredItems.addAll(products)
+        } else {
+            filteredItems.addAll(products.filter {
+                it.TenSP.contains(query, ignoreCase = true)
+            })
+        }
+        notifyDataSetChanged ()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(
@@ -36,16 +50,17 @@ class ProductAdapter(
         return ProductViewHolder(binding)
     }
 
-    override fun getItemCount() = products.size
+    override fun getItemCount() = filteredItems.size
 
     override fun onBindViewHolder(parent: ProductViewHolder, position: Int) {
-        val item = products.get(position)
+        val item = filteredItems.get(position)
         parent.bind(item)
     }
 
     fun addProducts(newProducts: List<Product>) {
         val startPosition = products.size
         products.addAll(newProducts)
+        filterList("")
         notifyItemRangeInserted (startPosition, newProducts.size)
     }
 }

@@ -15,19 +15,25 @@ import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.CreateProductRe
 import vn.edu.stu.tranthanhsang.manage_sales.data.repository.ProductRepository
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.ActivityProductAddBinding
 import vn.edu.stu.tranthanhsang.manage_sales.ui.main.MainActivity
+import vn.edu.stu.tranthanhsang.manage_sales.utils.ToastUtils
+import vn.edu.stu.tranthanhsang.manage_sales.utils.TokenManage
 import vn.edu.stu.tranthanhsang.manage_sales.viewModel.products.AddProductViewModelFactory
 import vn.edu.stu.tranthanhsang.manage_sales.viewModel.products.AddViewModel
 
 class ProductAddActivity : AppCompatActivity() {
     private lateinit var addViewModel: AddViewModel
-
+    private lateinit var tokenManager: TokenManage
     private lateinit var binding: ActivityProductAddBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val productRepository = ProductRepository()
-        val token = getToken()
+
+        tokenManager = TokenManage(this)
+        val token = tokenManager.getToken()
         Log.v("TOKEN_SET",token.toString())
+
         addViewModel = ViewModelProvider(
             this,AddProductViewModelFactory(productRepository)
         )[AddViewModel::class.java]
@@ -57,29 +63,26 @@ class ProductAddActivity : AppCompatActivity() {
         }
         addViewModel.isSuccessClicked.observe(this){
             if (it){
-                addViewModel.idProduct.value = binding.edtIdProduct.text.toString()
-                addViewModel.nameProduct.value = binding.edtNameProduct.text.toString()
-                addViewModel.priceProduct.value = binding.edtPriceProduct.text.toString()
-                addViewModel.slProduct.value = binding.edtSlProduct.text.toString()
-                addViewModel.typeProduct.value = binding.edtLoaiProduct.text.toString()
-                addViewModel.dvtProduct.value = binding.edtDvtProduct.text.toString()
-
+                setValueViewModel()
                 addViewModel.createProduct()
             }
         }
         addViewModel.isStatusCreate.observe(this){
             if (it.isSuccess){
-                Toast.makeText(this,"Thêm thành công",Toast.LENGTH_SHORT).show()
+                ToastUtils.showToast(this,"Thêm sản phẩm thành công")
                 startActivity(Intent(this,ProductListActivity::class.java))
             }else{
-                Toast.makeText(this,"Thêm thất bại",Toast.LENGTH_SHORT).show()
+                ToastUtils.showToast(this,"Thêm sản phẩm thất bại")
             }
         }
     }
-    private fun getToken(): String? {
-        val sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
-        val token = sharedPreferences.getString("auth_token",null)
-        Log.d("TOKEN",token.toString())
-        return token
+
+    private fun setValueViewModel() {
+        addViewModel.idProduct.value = binding.edtIdProduct.text.toString()
+        addViewModel.nameProduct.value = binding.edtNameProduct.text.toString()
+        addViewModel.priceProduct.value = binding.edtPriceProduct.text.toString()
+        addViewModel.slProduct.value = binding.edtSlProduct.text.toString()
+        addViewModel.typeProduct.value = binding.edtLoaiProduct.text.toString()
+        addViewModel.dvtProduct.value = binding.edtDvtProduct.text.toString()
     }
 }

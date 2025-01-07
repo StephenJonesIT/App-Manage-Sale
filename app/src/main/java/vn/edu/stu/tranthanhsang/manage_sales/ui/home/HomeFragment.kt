@@ -39,7 +39,7 @@ private lateinit var adapter: ItemDashboardAdapter
         adapter = ItemDashboardAdapter(list){
             itemDashboard ->
                 when(itemDashboard.title){
-                    "Thêm sản phẩm" -> {
+                    "Thêm sản phẩm " -> {
                         val intent = Intent(context, ProductAddActivity::class.java)
                         intent.putExtra("status",1)
                         startActivity(intent)
@@ -50,10 +50,10 @@ private lateinit var adapter: ItemDashboardAdapter
                     "Thêm nhà cung cấp" -> {
 
                     }
-                    "Tạo phiếu nhập" -> {
+                    "Tạo phiếu nhập " -> {
 
                     }
-                    "Tạo hóa đơn" -> {
+                    "Tạo hóa đơn " -> {
 
                     }
                     "Quản lý tài khoản" -> {

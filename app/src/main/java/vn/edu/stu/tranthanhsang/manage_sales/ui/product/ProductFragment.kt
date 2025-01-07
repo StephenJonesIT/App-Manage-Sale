@@ -49,10 +49,8 @@ private lateinit var adapterFunc: ItemFunctionAdapter
 
         binding.rcvProduct.layoutManager = LinearLayoutManager(context)
         binding.rcvProduct.adapter = adapterFunc
-
         val dividerItemDecoration = DividerItemDecoration(binding.rcvProduct.context,LinearLayoutManager.VERTICAL)
         binding.rcvProduct.addItemDecoration(dividerItemDecoration)
-
         addEvents()
     }
 
