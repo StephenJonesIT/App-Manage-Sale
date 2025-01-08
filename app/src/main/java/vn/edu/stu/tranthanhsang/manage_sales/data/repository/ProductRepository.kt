@@ -5,12 +5,10 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import retrofit2.Response
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.common.ErrorResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.CreateProductRequest
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.Product
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.ProductResponse
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.StatusResponse
+import vn.edu.stu.tranthanhsang.manage_sales.data.model.common.StatusResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.UpdateProductRequest
 import vn.edu.stu.tranthanhsang.manage_sales.data.remote.retrofit.ProductServiceClient
 import java.io.IOException

@@ -8,10 +8,9 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.Product
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.CreateProductRequest
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.ProductResponse
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.StatusResponse
+import vn.edu.stu.tranthanhsang.manage_sales.data.model.common.StatusResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.UpdateProductRequest
 
 interface ProductService {

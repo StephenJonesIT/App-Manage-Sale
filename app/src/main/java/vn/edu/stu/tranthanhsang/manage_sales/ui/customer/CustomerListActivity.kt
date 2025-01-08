@@ -130,6 +130,10 @@ class CustomerListActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.btnAdd.setOnClickListener {
+            startActivity(Intent(this,CustomerAddActivity::class.java))
+        }
     }
 
 }

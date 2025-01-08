@@ -2,8 +2,8 @@
 <layout>
   <data>
     <variable
-        name="editProductViewModel"
-        type="vn.edu.stu.tranthanhsang.manage_sales.viewModel.products.EditViewModel" />
+        name="editCustomerViewModel"
+        type="vn.edu.stu.tranthanhsang.manage_sales.viewModel.customer.EditCustomerViewModel" />
   </data>
   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_12sdp"
         android:src="@drawable/ic_close"
-        android:onClick="@{()->editProductViewModel.onCancelClicked()}"
+        android:onClick="@{()->editCustomerViewModel.onCancelClicked()}"
         app:layout_constraintBottom_toBottomOf="@id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
     <ImageView
         android:visibility="invisible"
         android:id="@+id/img_ok"
-        android:onClick="@{()->editProductViewModel.onConfirmClicked()}"
+        android:onClick="@{()->editCustomerViewModel.onConfirmClicked()}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_12sdp"
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_12sdp"
-        android:onClick="@{()->editProductViewModel.onStatusEditClicked()}"
+        android:onClick="@{()->editCustomerViewModel.onStatusEditClicked()}"
         android:src="@drawable/ic_edit"
         app:layout_constraintBottom_toBottomOf="@id/view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,11 +97,12 @@
           tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_id_product"
+            android:id="@+id/edt_id_customer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ma_san_pham"
-            android:text="@{editProductViewModel.idProduct}"
+            android:hint="Mã khách hàng"
+            android:maxLength="10"
+            android:text="@{editCustomerViewModel.idCustomer}"
             android:singleLine="true"
             android:textSize="18sp" />
       </com.google.android.material.textfield.TextInputLayout>
@@ -113,58 +114,51 @@
           tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_name_product"
+            android:id="@+id/edt_name_customer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ten_san_pham"
-            android:text="@{editProductViewModel.nameProduct}"
+            android:hint="Tên khách hàng"
+            android:text="@{editCustomerViewModel.nameCustomer}"
             android:singleLine="true"
             android:textSize="18sp" />
       </com.google.android.material.textfield.TextInputLayout>
 
       <LinearLayout
+          android:layout_margin="@dimen/_10sdp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
           android:weightSum="1">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_weight=".7"
-            tools:ignore="MissingConstraints">
-
-          <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/edt_sl_product"
-              android:layout_width="match_parent"
+          <androidx.appcompat.widget.AppCompatTextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:background="#84EFF6FD"
+              android:gravity="center"
+              android:textSize="18sp"
+              android:id="@+id/tv_type_customer"
+              android:text="Loại KH:"/>
+        <RadioGroup
+            android:id="@+id/rdg_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginStart="8dp"
+            android:weightSum="1">
+          <RadioButton
+              android:layout_width="0dp"
+              android:layout_weight=".6"
+              android:textSize="16sp"
+              android:layout_height="match_parent"
+              android:id="@+id/rbd_normal"
+              android:text="Bình thường"/>
+          <RadioButton
+              android:layout_width="0dp"
+              android:layout_weight=".4"
+              android:textSize="16sp"
               android:layout_height="wrap_content"
-              android:hint="@string/so_luong"
-              android:maxLength="9"
-              android:text="@{editProductViewModel.slProduct}"
-              android:inputType="number"
-              android:singleLine="true"
-              android:textSize="18sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_weight=".3"
-            tools:ignore="MissingConstraints">
-
-          <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/edt_loai_product"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:hint="Loại"
-              android:text="@{editProductViewModel.typeProduct}"
-              android:maxLength="2"
-              android:inputType="number"
-              android:singleLine="true"
-              android:textSize="18sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+              android:id="@+id/rbd_vip"
+              android:text="VIP"/>
+        </RadioGroup>
       </LinearLayout>
 
       <com.google.android.material.textfield.TextInputLayout
@@ -174,13 +168,13 @@
           tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_price_product"
+            android:id="@+id/edt_telephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/don_gia"
-            android:text="@{editProductViewModel.priceProduct}"
-            android:maxLength="10"
-            android:inputType="number"
+            android:hint="Số điện thoại"
+            android:text="@{editCustomerViewModel.telephone}"
+            android:maxLength="12"
+            android:inputType="phone"
             android:singleLine="true"
             android:textSize="18sp" />
       </com.google.android.material.textfield.TextInputLayout>
@@ -192,11 +186,11 @@
           tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_dvt_product"
+            android:id="@+id/edt_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/don_vi_tinh"
-            android:text="@{editProductViewModel.dvtProduct}"
+            android:hint="@string/dia_chi"
+            android:text="@{editCustomerViewModel.address}"
             android:singleLine="true"
             android:textSize="18sp" />
       </com.google.android.material.textfield.TextInputLayout>
@@ -210,7 +204,7 @@
         android:text="@string/luu"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:onClick="@{()->editProductViewModel.onConfirmClicked()}"
+        android:onClick="@{()->editCustomerViewModel.onConfirmClicked()}"
         android:visibility="invisible"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

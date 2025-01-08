@@ -1,12 +1,11 @@
 package vn.edu.stu.tranthanhsang.manage_sales.viewModel.products
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.StatusResponse
+import vn.edu.stu.tranthanhsang.manage_sales.data.model.common.StatusResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.UpdateProductRequest
 import vn.edu.stu.tranthanhsang.manage_sales.data.repository.ProductRepository
 
@@ -74,12 +73,6 @@ class EditViewModel(
         val sl = slProduct.value
         val type = typeProduct.value
         val dvt = dvtProduct.value
-        Log.d("ID",id.toString())
-        Log.d("NAME",name.toString())
-        Log.d("PRICE",price.toString())
-        Log.d("SL",sl.toString())
-        Log.d("TYPE",type.toString())
-        Log.d("DVT",dvt.toString())
 
         viewModelScope.launch {
             val result = productRepository.updateProduct(

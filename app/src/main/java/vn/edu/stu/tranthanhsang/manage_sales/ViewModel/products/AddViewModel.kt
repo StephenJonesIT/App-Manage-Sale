@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.CreateProductRequest
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.StatusResponse
+import vn.edu.stu.tranthanhsang.manage_sales.data.model.common.StatusResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.repository.ProductRepository
 import vn.edu.stu.tranthanhsang.manage_sales.utils.PriceUtils
 
