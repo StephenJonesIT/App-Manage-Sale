@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="4dp"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_loai"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Tên Khách Hàng: "
+            android:textSize="18sp"
+            android:id="@+id/tv_ten" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ten"
+            android:layout_marginTop="8dp"
+            android:text="Số điện thoại: "
+            android:textColor="@color/bottom_nav_icon_color"
+            android:textStyle="italic|bold"
+            android:id="@+id/tv_so_dien_thoai"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Loại khách hàng"
+            android:id="@+id/tv_loai"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/tv_ten"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_ten"
+            android:textStyle="bold"
+            android:textColor="@color/blue_dashboard"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,5 +1,6 @@
 package vn.edu.stu.tranthanhsang.manage_sales.ui.order
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import vn.edu.stu.tranthanhsang.manage_sales.R
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.itemfunc.ItemFunction
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.FragmentOrderBinding
 import vn.edu.stu.tranthanhsang.manage_sales.ui.adapters.itemfunc.ItemFunctionAdapter
+import vn.edu.stu.tranthanhsang.manage_sales.ui.customer.CustomerListActivity
 import vn.edu.stu.tranthanhsang.manage_sales.ui.main.MainActivity
 
 class OrderFragment : Fragment() {
@@ -30,18 +32,19 @@ private lateinit var adapterFunc: ItemFunctionAdapter
         (activity as MainActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val list = listOf(
-            ItemFunction(R.drawable.ic_list_alt,"Danh sách đơn hàng"),
-            ItemFunction(R.drawable.ic_person,"Khách hàng")
+            ItemFunction(R.drawable.ic_list_alt, "Danh sách đơn hàng"),
+            ItemFunction(R.drawable.ic_person, "Khách hàng")
         )
-        adapterFunc = ItemFunctionAdapter(list){
-            itemFunction ->
-            when(itemFunction.title){
+        adapterFunc = ItemFunctionAdapter(list) { itemFunction ->
+            when (itemFunction.title) {
                 "Danh sách đơn hàng" -> {
 
                 }
-                "Khách hàng"->{
 
-                }                }
+                "Khách hàng" -> {
+                    startActivity(Intent(context, CustomerListActivity::class.java))
+                }
+            }
         }
 
         binding.rcvOrder.layoutManager = LinearLayoutManager(context)

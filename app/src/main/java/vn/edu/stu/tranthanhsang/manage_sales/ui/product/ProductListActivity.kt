@@ -27,8 +27,8 @@ class ProductListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductListBinding
     private lateinit var listProductViewModel: ProductListViewModel
     private lateinit var tokenManager: TokenManage
-
     private lateinit var adapter: ProductAdapter
+
     private var currentPage = 1
     private val limit = 10
     private var isLoading = false

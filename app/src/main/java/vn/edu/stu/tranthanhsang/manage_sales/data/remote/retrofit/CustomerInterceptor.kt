@@ -4,9 +4,9 @@ import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AuthInterceptor:Interceptor {
+class CustomerInterceptor:Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = ProductServiceClient.token
+        val token = CustomerServiceClient.token
         val newRequest = chain.request().newBuilder()
             .addHeader("Authorization", token.toString())
             .build()

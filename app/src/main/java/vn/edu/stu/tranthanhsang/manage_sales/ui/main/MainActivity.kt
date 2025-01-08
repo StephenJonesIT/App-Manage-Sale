@@ -45,16 +45,16 @@ class MainActivity : AppCompatActivity() {
         Log.d("DATA",position.toString())
             when(position) {
                 1 -> {
-                    binding?.bottomNavigation?.selectedItemId = R.id.nav_receive
-                    replaceFragment(BillFragment())
+                    binding?.bottomNavigation?.selectedItemId = R.id.nav_order
+                    replaceFragment(OrderFragment())
                 }
                 2 ->{
                     binding?.bottomNavigation?.selectedItemId = R.id.nav_package
                     replaceFragment(ProductFragment())
                 }
                 3 ->{
-                    binding?.bottomNavigation?.selectedItemId = R.id.nav_order
-                    replaceFragment(OrderFragment())
+                    binding?.bottomNavigation?.selectedItemId = R.id.nav_receive
+                    replaceFragment(BillFragment())
                 }
                 4 -> {
                     binding?.bottomNavigation?.selectedItemId = R.id.nav_add
