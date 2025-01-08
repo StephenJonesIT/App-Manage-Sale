@@ -49,7 +49,7 @@
             android:id="@+id/search_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:queryHint="Tên khách hàng"
+            app:queryHint="Tìm kiếm"
             app:iconifiedByDefault="false"
             android:layout_margin="@dimen/_26sdp"
             android:background="@drawable/custom_search"

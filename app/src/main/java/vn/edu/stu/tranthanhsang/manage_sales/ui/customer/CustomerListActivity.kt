@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import vn.edu.stu.tranthanhsang.manage_sales.R
 import vn.edu.stu.tranthanhsang.manage_sales.data.repository.CustomerRepository
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.ActivityCustomerListBinding
@@ -65,6 +67,7 @@ class CustomerListActivity : AppCompatActivity() {
             )
             insets
         }
+
         addViews()
         addEvents()
         addObserve()
@@ -131,9 +134,41 @@ class CustomerListActivity : AppCompatActivity() {
             }
         }
 
+        binding.rcvCustomer.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                setupNextPage(layoutManager)
+            }
+        })
+
+        binding.searchView.setOnClickListener {
+            val layoutManager = binding.rcvCustomer.layoutManager as LinearLayoutManager
+            setupNextPage(layoutManager)
+        }
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextChange(query: String?): Boolean {
+                adapter.filterList(query)
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.filterList(query)
+                return true
+            }
+        })
+
         binding.btnAdd.setOnClickListener {
             startActivity(Intent(this,CustomerAddActivity::class.java))
         }
     }
 
+    private fun setupNextPage(layoutManager: LinearLayoutManager) {
+        if (!isLoading && hasMoreData && layoutManager.findLastVisibleItemPosition() == adapter.itemCount - 1) {
+            currentPage++
+            isLoading = true
+            listCustomerViewModel.fetchCustomersViewModel("",currentPage, limit)
+        }
+    }
 }

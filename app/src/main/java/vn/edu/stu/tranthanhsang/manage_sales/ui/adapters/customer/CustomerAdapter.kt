@@ -63,11 +63,14 @@ class CustomerAdapter(
         if (query.isNullOrBlank()) {
             filteredItems.addAll(customers)
         } else {
-            filteredItems.addAll(customers.filter {
-                it.Ho.contains(query, ignoreCase = true)
-                it.Ten.contains(query, ignoreCase = true)
+            val searchquery = query.lowercase().trim()
+            filteredItems.addAll(customers.filter { customer ->
+                        customer.Ho.lowercase().contains(searchquery) ||
+                        customer.Ten.lowercase().contains(searchquery) ||
+                        customer.SDT.lowercase().contains(searchquery) ||
+                        customer.LoaiKH.lowercase().contains(searchquery)
             })
         }
-        notifyDataSetChanged ()
+        notifyDataSetChanged()
     }
 }

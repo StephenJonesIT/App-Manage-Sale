@@ -10,13 +10,12 @@ object StringUtils {
                 .joinToString(" ") { it.capitalizeFirstLetter() }
             Pair (firstNameAndMiddleName, lastName)
         } else {
-            Pair(fullName.capitalizeFirstLetter(), "")
+            Pair("",fullName.capitalizeFirstLetter())
         }
-    }
-
+    } // Hàm mở rộng để viết hoa chữ cái đầu tiên của mỗi từ
     fun String.capitalizeFirstLetter(): String {
-        return this.split(" ").joinToString(" ") {
-            it.capitalize()
+        return this.replaceFirstChar {
+            it.uppercase()
         }
     }
 }

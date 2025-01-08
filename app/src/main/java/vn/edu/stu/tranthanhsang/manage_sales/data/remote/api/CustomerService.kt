@@ -4,10 +4,12 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.customer.CustomerResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.common.StatusResponse
+import vn.edu.stu.tranthanhsang.manage_sales.data.model.customer.CreateCustomerRequest
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.customer.UpdateCustomerRequest
 
 interface CustomerService {
@@ -16,4 +18,7 @@ interface CustomerService {
 
     @PATCH("customer/{makh}")
     suspend fun updateCustomer(@Path("makh") makh:String, @Body request: UpdateCustomerRequest):Response<StatusResponse>
+
+    @POST("customer")
+    suspend fun createCustomer(@Body request: CreateCustomerRequest):Response<StatusResponse>
 }
