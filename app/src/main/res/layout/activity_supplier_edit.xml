@@ -47,7 +47,7 @@
         <ImageView
             android:visibility="invisible"
             android:id="@+id/img_ok"
-            android:onClick="@{}"
+            android:onClick="@{()->editSupplier.onConfirmClicked()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_12sdp"
@@ -55,14 +55,15 @@
             app:layout_constraintBottom_toBottomOf="@id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
-            android:visibility="visible"
             android:id="@+id/img_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="22dp"
             android:layout_margin="@dimen/_12sdp"
-            android:onClick="@{}"
+            android:onClick="@{()->editSupplier.onStatusEditClicked()}"
             android:src="@drawable/ic_edit"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,11 +100,12 @@
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_id_product"
+                    android:id="@+id/edt_id_supplier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/id_supplier"
-                    android:text=""
+                    android:text="@{editSupplier.idSupplier}"
+                    android:inputType="textCapCharacters"
                     android:singleLine="true"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,11 +117,12 @@
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_name_product"
+                    android:id="@+id/edt_name_supplier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name_supplier"
-                    android:text="@{}"
+                    android:text="@{editSupplier.nameSupplier}"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -138,14 +141,14 @@
                     tools:ignore="MissingConstraints">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_sl_product"
+                        android:id="@+id/edt_telephone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/telephone"
                         android:inputType="phone"
                         android:maxLength="12"
                         android:singleLine="true"
-                        android:text="@{}"
+                        android:text="@{editSupplier.telephone}"
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,11 +160,11 @@
                     tools:ignore="MissingConstraints">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_loai_product"
+                        android:id="@+id/edt_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/type"
-                        android:text=""
+                        android:text="@{editSupplier.supplierType}"
                         android:maxLength="1"
                         android:inputType="number"
                         android:singleLine="true"
@@ -176,13 +179,12 @@
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_price_product"
+                    android:id="@+id/edt_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
-                    android:text="@{}"
-                    android:maxLength="10"
-                    android:inputType="number"
+                    android:text="@{editSupplier.address}"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -198,7 +200,7 @@
             android:text="@string/luu"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:onClick="@{}"
+            android:onClick="@{()->editSupplier.onConfirmClicked()}"
             android:visibility="invisible"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +208,6 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_delete"
-            android:onClick="@{}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_40sdp"
