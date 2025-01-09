@@ -16,10 +16,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.employee.EmployeeEditActivity"
+            android:name=".ui.employee.EmployeeAddActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.employee.EmployeeAddActivity"
+            android:name=".ui.employee.EmployeeEditActivity"
             android:exported="false" />
         <activity
             android:name=".ui.employee.EmployeeListActivity"

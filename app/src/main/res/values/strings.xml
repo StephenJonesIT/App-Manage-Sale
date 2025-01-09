@@ -35,4 +35,7 @@
     <string name="name_employee">Tên nhân viên</string>
     <string name="employee">Nhân viên</string>
     <string name="all_employee">Tất cả nhân viên</string>
+    <string name="add_employee">Thêm nhân viên</string>
+    <string name="id_employee">Mã nhân viên</string>
+    <string name="detail_employee">Chi tiết nhân viên</string>
 </resources>
