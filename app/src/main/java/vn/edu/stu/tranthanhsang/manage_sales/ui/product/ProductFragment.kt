@@ -13,6 +13,7 @@ import vn.edu.stu.tranthanhsang.manage_sales.data.model.itemfunc.ItemFunction
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.FragmentProductBinding
 import vn.edu.stu.tranthanhsang.manage_sales.ui.adapters.itemfunc.ItemFunctionAdapter
 import vn.edu.stu.tranthanhsang.manage_sales.ui.main.MainActivity
+import vn.edu.stu.tranthanhsang.manage_sales.ui.supplier.SupplierListActivity
 
 class ProductFragment : Fragment() {
 private lateinit var binding: FragmentProductBinding
@@ -42,7 +43,7 @@ private lateinit var adapterFunc: ItemFunctionAdapter
                         startActivity(Intent(context,ProductListActivity::class.java))
                     }
                     "Nhà cung cấp" ->{
-                        startActivity(Intent(context,ProductEditActivity::class.java))
+                        startActivity(Intent(context,SupplierListActivity::class.java))
                     }
                 }
         }

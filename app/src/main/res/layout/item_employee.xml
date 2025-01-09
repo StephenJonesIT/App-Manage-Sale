@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="4dp"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="@string/name_employee"
+            android:textSize="18sp"
+            android:id="@+id/tv_ten" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ten"
+            android:layout_marginTop="8dp"
+            android:text="@string/telephone"
+            android:textColor="@color/bottom_nav_icon_color"
+            android:textStyle="italic|bold"
+            android:id="@+id/tv_telephone"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_telephone"
+            android:layout_marginTop="8dp"
+            android:text="@string/address"
+            android:textColor="@color/bottom_nav_icon_color"
+            android:textStyle="italic|bold"
+            android:id="@+id/tv_address"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

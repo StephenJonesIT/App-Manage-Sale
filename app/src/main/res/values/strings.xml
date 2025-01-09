@@ -24,4 +24,13 @@
     <string name="tat_ca_san_pham">Tất cả sản phẩm</string>
     <string name="ngung_kinh_doanh">Ngừng kinh doanh</string>
     <string name="dia_chi">Địa chỉ</string>
+    <string name="detail_supplier">Chi tiết nhà cung cấp</string>
+    <string name="telephone">Số điện thoại</string>
+    <string name="type">Loại</string>
+    <string name="name_supplier">Tên nhà cung cấp</string>
+    <string name="id_supplier">Mã nhà cung cấp</string>
+    <string name="address">Địa chỉ</string>
+    <string name="stop_cooperation">Ngừng hợp tác</string>
+    <string name="add_supplier">Thêm nhà cung cấp</string>
+    <string name="name_employee">Tên nhân viên</string>
 </resources>

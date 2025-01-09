@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.Product
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.ProductResponse
 import vn.edu.stu.tranthanhsang.manage_sales.data.repository.ProductRepository
 

@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.supplier.SupplierAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.supplier.SupplierEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.supplier.SupplierListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.customer.CustomerAddActivity"
             android:exported="false" />
         <activity

@@ -1,9 +1,11 @@
 package vn.edu.stu.tranthanhsang.manage_sales.ui.adapters.products
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import vn.edu.stu.tranthanhsang.manage_sales.R
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.products.Product
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.ItemProductBinding
 import vn.edu.stu.tranthanhsang.manage_sales.utils.PriceUtils
@@ -14,7 +16,7 @@ class ProductAdapter(
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     inner class ProductViewHolder(val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "ResourceAsColor")
         fun bind(item: Product) {
             binding.tvTensp.text = item.TenSP
             binding.tvDonGia.text = "Giá: ${PriceUtils.formatNumber(item.DonGia)}"
