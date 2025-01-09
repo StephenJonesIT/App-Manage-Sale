@@ -12,7 +12,9 @@ import vn.edu.stu.tranthanhsang.manage_sales.R
 import vn.edu.stu.tranthanhsang.manage_sales.data.model.home.ItemDashboard
 import vn.edu.stu.tranthanhsang.manage_sales.databinding.FragmentHomeBinding
 import vn.edu.stu.tranthanhsang.manage_sales.ui.adapters.home.ItemDashboardAdapter
+import vn.edu.stu.tranthanhsang.manage_sales.ui.employee.EmployeeListActivity
 import vn.edu.stu.tranthanhsang.manage_sales.ui.product.ProductAddActivity
+import vn.edu.stu.tranthanhsang.manage_sales.ui.supplier.SupplierAddActivity
 
 class HomeFragment : Fragment() {
 private lateinit var binding:FragmentHomeBinding
@@ -45,10 +47,14 @@ private lateinit var adapter: ItemDashboardAdapter
                         startActivity(intent)
                     }
                     "Quản lý nhân viên" -> {
-
+                        val intent = Intent(context, EmployeeListActivity::class.java)
+                        intent.putExtra("status",1)
+                        startActivity(intent)
                     }
                     "Thêm nhà cung cấp" -> {
-
+                        val intent = Intent(context, SupplierAddActivity::class.java)
+                        intent.putExtra("status",1)
+                        startActivity(intent)
                     }
                     "Tạo phiếu nhập " -> {
 

@@ -16,7 +16,6 @@ class EmployeeAdapter(
     inner class EmployeeViewHolder(val binding: ItemEmployeeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Employee){
             binding.tvTen.text = "${item.Ho}"+" ${item.Ten}"
-            binding.tvAddress.text = item.DiaChi
             binding.tvTelephone.text = item.SDT
 
             binding.root.setOnClickListener {
@@ -58,8 +57,7 @@ class EmployeeAdapter(
             filteredItems.addAll(employees.filter { supplier ->
                 supplier.Ho.lowercase().contains(searchquery) ||
                         supplier.Ten.lowercase().contains(searchquery) ||
-                        supplier.SDT.lowercase().contains(searchquery) ||
-                        supplier.DiaChi.lowercase().contains(searchquery)
+                        supplier.SDT.lowercase().contains(searchquery)
             })
         }
         notifyDataSetChanged()

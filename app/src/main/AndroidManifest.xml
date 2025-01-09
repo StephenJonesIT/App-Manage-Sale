@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.employee.EmployeeEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.employee.EmployeeAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.employee.EmployeeListActivity"
             android:exported="false" />
         <activity

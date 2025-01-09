@@ -33,4 +33,6 @@
     <string name="stop_cooperation">Ngừng hợp tác</string>
     <string name="add_supplier">Thêm nhà cung cấp</string>
     <string name="name_employee">Tên nhân viên</string>
+    <string name="employee">Nhân viên</string>
+    <string name="all_employee">Tất cả nhân viên</string>
 </resources>
