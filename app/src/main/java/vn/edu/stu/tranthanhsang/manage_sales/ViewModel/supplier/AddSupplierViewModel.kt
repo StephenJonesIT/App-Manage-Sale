@@ -48,7 +48,7 @@ class AddSupplierViewModel(
         _supplierType.value = type
     }
 
-    fun saveSupplier() {
+    fun createSupplier() {
         val idSupplier = _idSupplier.value
         val nameSupplier = _nameSupplier.value
         val (Ho, Ten) = StringUtils.splitFullName(nameSupplier.toString())
@@ -68,6 +68,9 @@ class AddSupplierViewModel(
             )
             _isStatusCreate.value = result
         }
+    }
+    fun setToken(newToken: String){
+        supplierRepository.updateToken(newToken)
     }
     fun onclickSave(){
         _isStatusSave.value = true
